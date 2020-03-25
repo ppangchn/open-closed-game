@@ -6,7 +6,7 @@ describe("gameplay", () => {
       let player;
       let AI;
       beforeEach(() => {
-        player = { name: "Player", prediction: "", isPredictor: true };
+        player = { name: "You", prediction: "", isPredictor: true };
         AI = { name: "AI", prediction: "", isPredictor: false };
       });
       describe("Player win", () => {
@@ -22,7 +22,7 @@ describe("gameplay", () => {
           expect(isWon(player, AI)).toEqual("You WIN!!");
           expect(player.isWon).toBeTruthy();
         });
-        it("Player's prediction is OC1 and AI's prediction is CC", () => {
+        it("Player's prediction is OO4 and AI's prediction is OO", () => {
           player.prediction = "OO4";
           AI.prediction = "OO";
           expect(isWon(player, AI)).toEqual("You WIN!!");
@@ -42,21 +42,21 @@ describe("gameplay", () => {
         });
       });
       describe("No winner", () => {
-        it("Player's prediction is OO3 and AI's prediction is OO", () => {
+        it("Player's prediction is OO3 and AI's prediction is CC", () => {
           player.prediction = "OO3";
           AI.prediction = "CC";
           expect(isWon(player, AI)).toEqual("No winner");
           expect(player.isPredictor).toBeFalsy();
           expect(AI.isPredictor).toBeTruthy();
         });
-        it("Player's prediction is OO2 and AI's prediction is OO", () => {
+        it("Player's prediction is OO2 and AI's prediction is OC", () => {
           player.prediction = "OO2";
           AI.prediction = "OC";
           expect(isWon(player, AI)).toEqual("No winner");
           expect(player.isPredictor).toBeFalsy();
           expect(AI.isPredictor).toBeTruthy();
         });
-        it("Player's prediction is CO2 and AI's prediction is OO", () => {
+        it("Player's prediction is CO2 and AI's prediction is CC", () => {
           player.prediction = "CO2";
           AI.prediction = "CC";
           expect(isWon(player, AI)).toEqual("No winner");
@@ -76,7 +76,7 @@ describe("gameplay", () => {
       let player;
       let AI;
       beforeEach(() => {
-        player = { name: "Player", prediction: "", isPredictor: false };
+        player = { name: "You", prediction: "", isPredictor: false };
         AI = { name: "AI", prediction: "", isPredictor: true };
       });
       describe("AI WIN!!!", () => {
@@ -92,7 +92,7 @@ describe("gameplay", () => {
           expect(isWon(AI, player)).toEqual("AI WIN!!");
           expect(AI.isWon).toBeTruthy();
         });
-        it("AI's prediction is OC1 and player's prediction is CC", () => {
+        it("AI's prediction is OO4 and player's prediction is OO", () => {
           AI.prediction = "OO4";
           player.prediction = "OO";
           expect(isWon(AI, player)).toEqual("AI WIN!!");
@@ -119,14 +119,14 @@ describe("gameplay", () => {
           expect(player.isPredictor).toBeTruthy();
           expect(AI.isPredictor).toBeFalsy();
         });
-        it("AI's prediction is OO2 and player's prediction is OO", () => {
+        it("AI's prediction is OO2 and player's prediction is OC", () => {
           AI.prediction = "OO2";
           player.prediction = "OC";
           expect(isWon(AI, player)).toEqual("No winner");
           expect(player.isPredictor).toBeTruthy();
           expect(AI.isPredictor).toBeFalsy();
         });
-        it("AI's prediction is CO2 and player's prediction is OO", () => {
+        it("AI's prediction is CO2 and player's prediction is CC", () => {
           AI.prediction = "CO2";
           player.prediction = "CC";
           expect(isWon(AI, player)).toEqual("No winner");
@@ -147,7 +147,7 @@ describe("gameplay", () => {
     let player;
     let AI;
     beforeEach(() => {
-      player = { name: "Player", prediction: "", isPredictor: false };
+      player = { name: "You", prediction: "", isPredictor: false };
       AI = { name: "AI", prediction: "", isPredictor: true };
     });
     it("Player's information and AI's information should be reset", () => {

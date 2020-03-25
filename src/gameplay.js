@@ -22,8 +22,7 @@ const isWon = (player, enemy) => {
   }
   if (countO === parseInt(playerPrediction[playerPrediction.length - 1])) {
     player.isWon = true;
-    if (player.name === "AI") return "AI WIN!!";
-    return "You WIN!!";
+    return `${player.name} WIN!!`;
   }
   player.isPredictor = false;
   enemy.isPredictor = true;
@@ -54,8 +53,8 @@ const retryGame = (player, AI) => {
 };
 
 const play = (player, AI) => {
-  let question = "\nYou are the predictor, what is your input? ";
-  if (!player.isPredictor) question = "\nAI is the predictor, what is your input? ";
+  let question = `\n${player.name} are the predictor, what is your input? `;
+  if (!player.isPredictor) question = `\n${AI.name} is the predictor, what is your input? `;
   readline.question(question, prediction => {
     if (isInvalidInput(player, prediction)) {
       console.log("\n" + isInvalidInput(player, prediction));
@@ -63,7 +62,7 @@ const play = (player, AI) => {
     } else {
       player.prediction = prediction.trim();
       AI.prediction = randomAnswer(AI.isPredictor);
-      console.log("\nAI:", AI.prediction + "\n");
+      console.log(`\n:${AI.name}`, AI.prediction + "\n");
       if (player.isPredictor) console.log(isWon(player, AI));
       else if (AI.isPredictor) console.log(isWon(AI, player));
       if (player.isWon || AI.isWon) {

@@ -3,7 +3,7 @@ const { isInvalidInput } = require("./utils");
 describe("utils", () => {
   describe("isInvalidInput", () => {
     describe("Player is a predictor", () => {
-      const player = { name: "Player", prediction: "", isPredictor: true };
+      const player = { name: "You", prediction: "", isPredictor: true };
       describe("Correct input", () => {
         it("Player's prediction is CC0", () => {
           expect(isInvalidInput(player, "CC0")).toBeUndefined();
@@ -115,7 +115,7 @@ describe("utils", () => {
             "Bad input: correct input should be of the form CC3, where the first two letters indicate [O]pen or [C]losed state for each hand, followed by the prediction (0-4)."
           );
         });
-        it("Player's prediction is oo2", () => {
+        it("Player's prediction is Co2", () => {
           expect(isInvalidInput(player, "Co2")).toEqual(
             "Bad input: correct input should be of the form CC3, where the first two letters indicate [O]pen or [C]losed state for each hand, followed by the prediction (0-4)."
           );
@@ -138,7 +138,7 @@ describe("utils", () => {
       });
     });
     describe("Player is not a predictor", () => {
-      const player = { name: "Player", prediction: "", isPredictor: false };
+      const player = { name: "You", prediction: "", isPredictor: false };
       describe("Correct input", () => {
         it("Player's prediction is CC", () => {
           expect(isInvalidInput(player, "CC")).toBeUndefined();
@@ -156,8 +156,8 @@ describe("utils", () => {
             "Bad input: no prediction expected, you are not the predictor."
           );
         });
-        it("Player's prediction is OO2", () => {
-          expect(isInvalidInput(player, "OO4")).toEqual(
+        it("Player's prediction is CO3", () => {
+          expect(isInvalidInput(player, "CO3")).toEqual(
             "Bad input: no prediction expected, you are not the predictor."
           );
         });
@@ -198,7 +198,7 @@ describe("utils", () => {
             "Bad input: correct input should be of the form CC, where the first two letters indicate [O]pen or [C]losed state for each hand"
           );
         });
-        it("Player's prediction is oo2", () => {
+        it("Player's prediction is Co2", () => {
           expect(isInvalidInput(player, "Co2")).toEqual(
             "Bad input: correct input should be of the form CC, where the first two letters indicate [O]pen or [C]losed state for each hand"
           );

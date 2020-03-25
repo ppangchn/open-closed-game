@@ -4,7 +4,7 @@ describe("init", () => {
   describe("initialPlayer", () => {
     it("should return player's information", () => {
       expect(initialPlayer()).toEqual({
-        name: "Player",
+        name: "You",
         prediction: "",
         isPredictor: true,
         isWon: false,

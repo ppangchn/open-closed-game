@@ -1,5 +1,5 @@
 const initialPlayer = () => {
-  return { name: "Player", prediction: "", isPredictor: true, isWon: false };
+  return { name: "You", prediction: "", isPredictor: true, isWon: false };
 };
 
 const initialAI = () => {

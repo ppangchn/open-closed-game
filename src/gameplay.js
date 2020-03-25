@@ -40,14 +40,14 @@ const resetGame = (player, AI) => {
 
 const retryGame = (player, AI) => {
   readline.question("\nDo you want to play again? (Y/N) ", ans => {
-    if (/(N|n)(o|O)?/g.exec(ans)) {
+    if (/^(N|n)(o|O)?$/g.exec(ans)) {
       console.log("\nOk, bye!\n");
       readline.close();
-    } else if (/(Y|y)(es|Es|eS|ES)?/g.exec(ans)) {
+    } else if (/^(Y|y)(es|Es|eS|ES)?$/g.exec(ans)) {
       resetGame(player, AI);
       play(player, AI);
     } else {
-      retryGame();
+      retryGame(player, AI);
     }
   });
 };
@@ -62,7 +62,7 @@ const play = (player, AI) => {
     } else {
       player.prediction = prediction.trim();
       AI.prediction = randomAnswer(AI.isPredictor);
-      console.log(`\n:${AI.name}`, AI.prediction + "\n");
+      console.log(`\n${AI.name}:`, AI.prediction + "\n");
       if (player.isPredictor) console.log(isWon(player, AI));
       else if (AI.isPredictor) console.log(isWon(AI, player));
       if (player.isWon || AI.isWon) {

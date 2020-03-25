@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/gameplay",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll --runInBand"
   },
   "repository": "git@github.com:ppangchn/open-closed-game.git",
   "author": "Chanissa Trithipkaiwanpon <pang.chanissa@gmail.com>",

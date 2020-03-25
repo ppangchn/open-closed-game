@@ -38,7 +38,7 @@ const play = (player, AI) => {
       console.log("\n" + isInvalidInput(player, prediction));
       play(player, AI);
     } else {
-      player.prediction = prediction;
+      player.prediction = prediction.trim();
       AI.prediction = randomAnswer(AI.isPredictor);
       console.log("\nAI:", AI.prediction + "\n");
       if (player.isPredictor) console.log(isWon(player, AI));

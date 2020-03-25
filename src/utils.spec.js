@@ -4,6 +4,32 @@ describe("utils", () => {
   describe("isInvalidInput", () => {
     describe("Player is a predictor", () => {
       const player = { name: "Player", prediction: "", isPredictor: true };
+      describe("Correct input", () => {
+        it("Player's prediction is CC0", () => {
+          expect(isInvalidInput(player, "CC0")).toBeUndefined();
+        });
+        it("Player's prediction is CC1", () => {
+          expect(isInvalidInput(player, "CC1")).toBeUndefined();
+        });
+        it("Player's prediction is OC2", () => {
+          expect(isInvalidInput(player, "OC2")).toBeUndefined();
+        });
+        it("Player's prediction is OC3", () => {
+          expect(isInvalidInput(player, "OC3")).toBeUndefined();
+        });
+        it("Player's prediction is OC4", () => {
+          expect(isInvalidInput(player, "OC4")).toBeUndefined();
+        });
+        it("Player's prediction is OO4", () => {
+          expect(isInvalidInput(player, "OO4")).toBeUndefined();
+        });
+        it("Player's prediction is OO4 with whitespace", () => {
+          expect(isInvalidInput(player, "OO4 ")).toBeUndefined();
+        });
+        it("Player's prediction is OO2 with whitespace", () => {
+          expect(isInvalidInput(player, "     OO2 ")).toBeUndefined();
+        });
+      });
       describe("Bad input: Need prediction and should be in the range of 0-4", () => {
         it("Player's prediction is OO", () => {
           expect(isInvalidInput(player, "OO")).toEqual(
@@ -25,6 +51,11 @@ describe("utils", () => {
             "Bad input: Need prediction and should be in the range of 0-4"
           );
         });
+        it("Player's prediction is OC with whitespace", () => {
+          expect(isInvalidInput(player, "OC ")).toEqual(
+            "Bad input: Need prediction and should be in the range of 0-4"
+          );
+        });
       });
       describe("Bad input: prediction should be in the range of 0-4.", () => {
         it("Player's prediction is OO8", () => {
@@ -42,13 +73,13 @@ describe("utils", () => {
             "Bad input: prediction should be in the range of 0-4."
           );
         });
-        it("Player's prediction is OC16", () => {
-          expect(isInvalidInput(player, "OC16")).toEqual(
+        it("Player's prediction is OOO", () => {
+          expect(isInvalidInput(player, "OOO")).toEqual(
             "Bad input: prediction should be in the range of 0-4."
           );
         });
-        it("Player's prediction is OOO", () => {
-          expect(isInvalidInput(player, "OOO")).toEqual(
+        it("Player's prediction is OOO with whitespace", () => {
+          expect(isInvalidInput(player, "OOO   ")).toEqual(
             "Bad input: prediction should be in the range of 0-4."
           );
         });
@@ -94,10 +125,31 @@ describe("utils", () => {
             "Bad input: correct input should be of the form CC3, where the first two letters indicate [O]pen or [C]losed state for each hand, followed by the prediction (0-4)."
           );
         });
+        it("Player's prediction is OC16", () => {
+          expect(isInvalidInput(player, "OC16")).toEqual(
+            "Bad input: correct input should be of the form CC3, where the first two letters indicate [O]pen or [C]losed state for each hand, followed by the prediction (0-4)."
+          );
+        });
+        it("Player's prediction is OC126 with wih whitespace", () => {
+          expect(isInvalidInput(player, "OC126     ")).toEqual(
+            "Bad input: correct input should be of the form CC3, where the first two letters indicate [O]pen or [C]losed state for each hand, followed by the prediction (0-4)."
+          );
+        });
       });
     });
     describe("Player is not a predictor", () => {
       const player = { name: "Player", prediction: "", isPredictor: false };
+      describe("Correct input", () => {
+        it("Player's prediction is CC", () => {
+          expect(isInvalidInput(player, "CC")).toBeUndefined();
+        });
+        it("Player's prediction is OC", () => {
+          expect(isInvalidInput(player, "OC")).toBeUndefined();
+        });
+        it("Player's prediction is OO with whitespace", () => {
+          expect(isInvalidInput(player, "     OO ")).toBeUndefined();
+        });
+      });
       describe("Bad input: no prediction expected, you are not the predictor.", () => {
         it("Player's prediction is OO4", () => {
           expect(isInvalidInput(player, "OO4")).toEqual(
@@ -106,6 +158,11 @@ describe("utils", () => {
         });
         it("Player's prediction is OO2", () => {
           expect(isInvalidInput(player, "OO4")).toEqual(
+            "Bad input: no prediction expected, you are not the predictor."
+          );
+        });
+        it("Player's prediction is OO4 with whitespace", () => {
+          expect(isInvalidInput(player, "OO4  ")).toEqual(
             "Bad input: no prediction expected, you are not the predictor."
           );
         });
@@ -153,6 +210,11 @@ describe("utils", () => {
         });
         it("Player's prediction is OOO", () => {
           expect(isInvalidInput(player, "OOO")).toEqual(
+            "Bad input: correct input should be of the form CC, where the first two letters indicate [O]pen or [C]losed state for each hand"
+          );
+        });
+        it("Player's prediction is OOO wih whitespace", () => {
+          expect(isInvalidInput(player, "OOO    ")).toEqual(
             "Bad input: correct input should be of the form CC, where the first two letters indicate [O]pen or [C]losed state for each hand"
           );
         });

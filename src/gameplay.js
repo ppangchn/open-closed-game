@@ -16,7 +16,7 @@ const isWon = (player, enemy) => {
   const playerPrediction = player.prediction;
   const enemyPrediction = enemy.prediction;
   let countO = 0;
-  for (let index = 0; index < 3; index++) {
+  for (let index = 0; index < 2; index++) {
     if (playerPrediction[index] === "O") countO++;
     if (enemyPrediction[index] === "O") countO++;
   }

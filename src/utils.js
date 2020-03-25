@@ -7,7 +7,7 @@ const randomAnswer = isPredictor => {
   const answerList = ["O", "C"];
   let answer = "";
   for (let index = 0; index < 2; index++) {
-    const randomInt = Math.floor(Math.random());
+    const randomInt = Math.floor(Math.random() * Math.floor(2));
     answer += answerList[randomInt];
   }
   let countO = 0;
@@ -15,7 +15,7 @@ const randomAnswer = isPredictor => {
     if (answer[index] === "O") countO++;
   }
   if (isPredictor) {
-    const randomPrediction = Math.floor(Math.random() * (5 - countO)) + countO;
+    const randomPrediction = Math.floor(Math.random() * 3) + countO;
     answer += randomPrediction;
   }
   return answer;
